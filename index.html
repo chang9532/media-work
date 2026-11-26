@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的互動網站首頁</title>
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --secondary: #10b981;
+      --secondary-hover: #059669;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      color: #0f172a;
+    }
+
+    /* 區塊通用樣式 */
+    .section-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* 1. YouTube RWD 響應式容器 */
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 比例 */
+      height: 0;
+      overflow: hidden;
+      border-radius: 12px;
+      background: #000;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* 2 & 3. 互動按鈕區塊 */
+    .grid-actions {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .action-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 24px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .action-box:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn {
+      display: inline-block;
+      text-align: center;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      margin-top: 20px;
+      transition: background-color 0.2s;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .btn-secondary {
+      background-color: var(--secondary);
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--secondary-hover);
+    }
+
+    /* 彈出式小遊戲視窗 (Modal) */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      width: 90%;
+      max-width: 450px;
+      text-align: center;
+      position: relative;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #64748b;
+      background: none;
+      border: none;
+    }
+
+    /* 小遊戲內部樣式 */
+    .game-area {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      background: #f1f5f9;
+      border-radius: 12px;
+      margin: 15px 0;
+      overflow: hidden;
+      border: 2px dashed #cbd5e1;
+    }
+
+    #target-btn {
+      position: absolute;
+      padding: 10px 18px;
+      background: #ef4444;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      top: 85px;
+      left: 130px;
+    }
+
+    .game-stats {
+      display: flex;
+      justify-content: space-around;
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>歡迎來到我的互動網站</h1>
+      <p>觀看精選影片、探索互動體驗，或是直接挑戰網頁小遊戲</p>
+    </header>
+
+    <!-- 區塊一：播放 YouTube 影片 -->
+    <section class="section-card">
+      <h2 class="section-title">🎬 1. 精選介紹影片</h2>
+      <div class="video-wrapper">
+        <!-- 將下方 src 中的影片 ID (dQw4w9WgXcQ) 替換成你的 YouTube 影片 ID -->
+        <iframe 
+          src="https://youtube.com" 
+          title="YouTube video player" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+    </section>
+
+    <!-- 區塊二與三：互動網頁與網頁小遊戲 -->
+    <div class="grid-actions">
+      
+      <!-- 區塊二：進入互動網頁 -->
+      <section class="section-card action-box">
+        <div>
+          <h2 class="section-title">✨ 2. 探索互動網頁</h2>
+          <p>進入專屬的互動展示頁面，體驗動態視覺效果與即時資料回饋。</p>
+        </div>
+        <!-- 將 href 替換成你的互動網頁檔名 (例如 interactive.html) 或網址 -->
+        <a href="interactive.html" class="btn btn-primary">進入互動網頁 →</a>
+      </section>
+
+      <!-- 區塊三：開啟網頁小遊戲 -->
+      <section class="section-card action-box">
+        <div>
+          <h2 class="section-title">🎮 3. 挑戰網頁小遊戲</h2>
+          <p>無需離開首頁，點擊按鈕立即開啟限時 15 秒的「捕捉紅點」反應力小遊戲！</p>
+        </div>
+        <button onclick="openGame()" class="btn btn-secondary">開始玩小遊戲</button>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- 彈出式網頁小遊戲視窗 -->
+  <div class="modal-overlay" id="gameModal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeGame()">&times;</button>
+      <h2>🎯 限時點擊挑戰</h2>
+      <p style="font-size: 0.9rem; color: #64748b; margin-top: 5px;">在 15 秒內盡可能點擊移動的目標！</p>
+      
+      <div class="game-stats">
+        <span>分數: <span id="score">0</span></span>
+        <span>剩餘時間: <span id="time">15</span>s</span>
+      </div>
+
+      <div class="game-area" id="gameArea">
+        <button id="target-btn" onclick="hitTarget()">點我！</button>
+      </div>
+
+      <button class="btn btn-primary" id="startBtn" onclick="startGame()" style="margin-top: 5px; width: 100%;">重新開始</button>
+    </div>
+  </div>
+
+  <script>
+    let score = 0;
+    let timeLeft = 15;
+    let timer = null;
+    let isPlaying = false;
+
+    const modal = document.getElementById('gameModal');
+    const scoreDisplay = document.getElementById('score');
+    const timeDisplay = document.getElementById('time');
+    const targetBtn = document.getElementById('target-btn');
+    const gameArea = document.getElementById('gameArea');
+
+    function openGame() {
+      modal.style.display = 'flex';
+      startGame();
+    }
+
+    function closeGame() {
+      modal.style.display = 'none';
+      clearInterval(timer);
+      isPlaying = false;
+    }
+
+    function startGame() {
+      score = 0;
+      timeLeft = 15;
+      isPlaying = true;
+      scoreDisplay.textContent = score;
+      timeDisplay.textContent = timeLeft;
+      targetBtn.style.display = 'block';
+      moveTarget();
+
+      clearInterval(timer);
+      timer = setInterval(() => {
+        timeLeft--;
+        timeDisplay.textContent = timeLeft;
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          isPlaying = false;
+          targetBtn.style.display = 'none';
+          alert(`時間到！你的最終得分是：${score} 分！`);
+        }
+      }, 1000);
+    }
+
+    function hitTarget() {
+      if (!isPlaying) return;
+      score++;
+      scoreDisplay.textContent = score;
+      moveTarget();
+    }
+
+    function moveTarget() {
+      const maxX = gameArea.clientWidth - targetBtn.offsetWidth - 10;
+      const maxY = gameArea.clientHeight - targetBtn.offsetHeight - 10;
+      const randomX = Math.max(10, Math.floor(Math.random() * maxX));
+      const randomY = Math.max(10, Math.floor(Math.random() * maxY));
+      
+      targetBtn.style.left = randomX + 'px';
+      targetBtn.style.top = randomY + 'px';
+    }
+  </script>
+
+</body>
+</html>

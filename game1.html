@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>目連救母｜因果與報恩互動故事</title>
+  <!-- 載入 Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- 載入 Google Fonts：思源宋體與思源黑體 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans TC"', '"Microsoft JhengHei"', 'sans-serif'],
+            serif: ['"Noto Serif TC"', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 頁面切換淡入與微上浮動畫 */
+    @keyframes fadeSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-page {
+      animation: fadeSlideUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* 插畫緩慢漂浮呼吸感 */
+    @keyframes gentleFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-4px); }
+    }
+    .illust-float {
+      animation: gentleFloat 4.5s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="bg-[#f5efe4] text-[#2c251d] font-sans min-h-screen flex flex-col justify-center items-center p-4 sm:p-6 relative overflow-x-hidden selection:bg-[#d97706] selection:text-white transition-colors duration-700">
+
+  <!-- 明亮暖色背景光暈（隨劇情切換柔和色彩） -->
+  <div id="bg-glow" class="fixed inset-0 pointer-events-none transition-all duration-700"
+       style="background: radial-gradient(circle at 50% 15%, rgba(245, 158, 11, 0.18), transparent 70%);">
+  </div>
+
+  <!-- 音樂控制懸浮按鈕 -->
+  <div class="fixed top-4 right-4 z-50 flex items-center gap-2 bg-white/90 backdrop-blur-md border border-[#d97706]/40 px-3 py-1.5 rounded-full shadow-md">
+    <button onclick="toggleAmbientMusic()" class="flex items-center gap-1.5 text-xs font-bold text-[#78350f] hover:text-[#d97706] transition-colors cursor-pointer select-none">
+      <span id="music-icon">🎵</span>
+      <span id="music-text">播放禪意配樂</span>
+    </button>
+  </div>
+
+  <!-- 主故事容器（明亮宣紙白卡片） -->
+  <main id="story-box" class="relative z-10 max-w-2xl w-full bg-[#fffdf9]/95 backdrop-blur-md border-2 border-[#d97706]/60 rounded-2xl p-5 sm:p-8 shadow-[0_18px_45px_rgba(120,85,40,0.12)] transition-all duration-500">
+    
+    <!-- 頂部裝飾與進度指示 -->
+    <div class="flex items-center justify-between mb-4 pb-3 border-b border-[#e8dec8]">
+      <div class="flex items-center gap-2 text-xs sm:text-sm text-[#b45309] tracking-wider font-bold">
+        <span>🪷</span>
+        <span>佛說盂蘭盆經・繪本互動故事</span>
+      </div>
+      <div id="step-indicator" class="text-xs text-[#786c5e] bg-[#f3ead8] px-2.5 py-0.5 rounded-full font-medium">
+        章節 1 / 4
+      </div>
+    </div>
+
+    <!-- ==================== 序章：因果的起點 ==================== -->
+    <section id="p-start" class="pg animate-page">
+      <!-- 序章圖片區：已嵌入分鏡1（目連得道） -->
+      <div class="w-full h-52 sm:h-64 rounded-xl overflow-hidden mb-4 border border-[#e6d5b8] bg-gradient-to-b from-[#fef3c7] via-[#fde68a]/60 to-[#fffbeb] flex items-center justify-center relative shadow-inner">
+        <img src="https://i.postimg.cc/bNNGJjTJ/fen-jing1-mu-lian-de-dao.jpg" alt="目連尊者天眼觀照" class="w-full h-full object-cover"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <svg style="display:none" viewBox="0 0 400 180" class="w-full h-full illust-float" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="halo1" cx="50%" cy="42%" r="45%">
+              <stop offset="0%" stop-color="#fbbf24" stop-opacity="0.7"/>
+              <stop offset="65%" stop-color="#fde68a" stop-opacity="0.3"/>
+              <stop offset="100%" stop-color="#fef3c7" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="robe1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#d97706"/>
+              <stop offset="100%" stop-color="#92400e"/>
+            </linearGradient>
+          </defs>
+          <circle cx="200" cy="75" r="78" fill="url(#halo1)"/>
+          <circle cx="200" cy="75" r="46" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <ellipse cx="200" cy="158" rx="68" ry="12" fill="#f472b6" opacity="0.35"/>
+          <path d="M150,154 Q175,138 200,154 Q225,138 250,154 Z" fill="#ec4899" opacity="0.65"/>
+          <path d="M152,152 C155,112 175,100 200,100 C225,100 245,112 248,152 Z" fill="url(#robe1)"/>
+          <circle cx="200" cy="76" r="21" fill="#fde0b2" stroke="#b45309" stroke-width="1.5"/>
+          <circle cx="200" cy="70" r="3" fill="#f59e0b"/>
+        </svg>
+        <span class="absolute bottom-2 right-3 text-[11px] text-[#78350f] font-medium bg-white/85 backdrop-blur-xs px-2.5 py-0.5 rounded-full shadow-2xs">目連運天眼通觀照慈親</span>
+      </div>
+
+      <span class="inline-block text-xs sm:text-sm font-bold text-[#92400e] bg-[#fef3c7] border border-[#f59e0b]/50 px-3.5 py-1 rounded-full mb-2.5">
+        序章｜因果的起點
+      </span>
+      <h1 class="font-serif text-xl sm:text-2xl font-bold text-[#451a03] mb-3 leading-snug">
+        神通第一的目連尊者，為何急著尋找母親？
+      </h1>
+      <div class="space-y-3 text-sm sm:text-base leading-relaxed text-[#3f352c]">
+        <p>目犍連（簡稱目連）是佛陀座下「神通第一」的弟子。剛證得神通的他，第一個念頭就是報答父母的養育之恩。</p>
+        <p>他運用天眼通觀察過世的母親身在何處——在佛教因果觀中，生前的行為（業力）會牽引未來的去向。你認為目連的母親生前是什麼樣的人？</p>
+      </div>
+
+      <div class="bg-[#fef3c7]/80 border-l-4 border-[#d97706] p-3.5 rounded-r-xl my-4 text-xs sm:text-sm leading-relaxed text-[#78350f]">
+        💡 <strong class="text-[#92400e]">思考引導：</strong>不同的行為模式會帶來截然不同的結果，請選擇母親生前的為人：
+      </div>
+
+      <div class="space-y-2.5">
+        <button onclick="playSoundEffect('click'); show('p-heaven')" class="w-full text-left bg-[#fffbeb] hover:bg-[#fef3c7] active:scale-[0.99] text-[#78350f] border border-[#f59e0b]/60 hover:border-[#d97706] p-3.5 rounded-xl text-sm sm:text-base transition-all duration-200 flex items-start gap-3 group cursor-pointer shadow-sm">
+          <span class="text-lg mt-0.5 group-hover:scale-110 transition-transform">✨</span>
+          <span><strong>分支一：</strong>母親生前「樂善好施」，常幫助貧苦與供養修行人</span>
+        </button>
+
+        <button onclick="playSoundEffect('click'); show('p-ghost')" class="w-full text-left bg-[#fffbeb] hover:bg-[#fef3c7] active:scale-[0.99] text-[#78350f] border border-[#f59e0b]/60 hover:border-[#d97706] p-3.5 rounded-xl text-sm sm:text-base transition-all duration-200 flex items-start gap-3 group cursor-pointer shadow-sm">
+          <span class="text-lg mt-0.5 group-hover:scale-110 transition-transform">🔥</span>
+          <span><strong>分支二：</strong>母親生前「慳貪吝嗇」，甚至欺騙、打罵出家僧侶</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==================== 分支一結果：善因善果 ==================== -->
+    <section id="p-heaven" class="pg hidden">
+      <!-- 天界圖片區 -->
+      <div class="w-full h-52 sm:h-64 rounded-xl overflow-hidden mb-4 border border-[#bae6fd] bg-gradient-to-b from-[#e0f2fe] via-[#fef9c3]/70 to-[#ecfeff] flex items-center justify-center relative shadow-inner">
+        <img src="https://i.postimg.cc/pTbCbdKr/le-shan-hao-shi-si-hou-sheng-tian.jpg" alt="善因善果往生天界" class="w-full h-full object-cover"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <span class="absolute bottom-2 right-3 text-[11px] text-[#0369a1] font-medium bg-white/85 backdrop-blur-xs px-2.5 py-0.5 rounded-full shadow-2xs">善業感得天界光明安樂</span>
+      </div>
+
+      <span class="inline-block text-xs sm:text-sm font-bold text-[#0369a1] bg-[#e0f2fe] border border-[#38bdf8]/60 px-3.5 py-1 rounded-full mb-2.5">
+        第一層結果｜善因善果
+      </span>
+      <h1 class="font-serif text-xl sm:text-2xl font-bold text-[#0c4a6e] mb-3 leading-snug">
+        福報具足，往生天界享樂
+      </h1>
+      <div class="space-y-3 text-sm sm:text-base leading-relaxed text-[#334155]">
+        <p>目連透過天眼看見，母親正安穩地生活在光明殊勝的天界之中，衣食自然化現，容貌莊嚴快樂。</p>
+        <p>因為她生前心量寬廣、樂於分享與布施，為自己累積了深厚的善業與福報，死後自然感得天界的安樂果報。</p>
+      </div>
+
+      <div class="bg-[#e0f2fe]/80 border-l-4 border-[#0284c7] p-3.5 rounded-r-xl my-4 text-xs sm:text-sm leading-relaxed text-[#075985]">
+        📌 <strong>核心觀念：</strong>布施與善行是為自己種下正向「善因」。想了解《盂蘭盆經》的歷史主線，請返回序章探索另一個分支！
+      </div>
+
+      <button onclick="playSoundEffect('click'); restart()" class="w-full text-center bg-[#f0f9ff] hover:bg-[#e0f2fe] text-[#0369a1] border border-[#38bdf8] p-3.5 rounded-xl text-sm sm:text-base font-bold transition-all cursor-pointer shadow-sm">
+        ↺ 返回序章，探索另一條歷史主線
+      </button>
+    </section>
+
+    <!-- ==================== 第二層：身墮餓鬼道 ==================== -->
+    <section id="p-ghost" class="pg hidden">
+      <!-- 餓鬼道圖片區 -->
+      <div class="w-full h-52 sm:h-64 rounded-xl overflow-hidden mb-4 border border-[#fecaca] bg-gradient-to-b from-[#fee2e2] via-[#ffedd5] to-[#fef2f2] flex items-center justify-center relative shadow-inner">
+        <img src="https://i.postimg.cc/QtKM5Xzn/image-a7b8a140.jpg" alt="母親身墮餓鬼道受苦" class="w-full h-full object-cover"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <span class="absolute bottom-2 right-3 text-[11px] text-[#991b1b] font-medium bg-white/85 backdrop-blur-xs px-2.5 py-0.5 rounded-full shadow-2xs">慳貪業力牽引墮入餓鬼道</span>
+      </div>
+
+      <span class="inline-block text-xs sm:text-sm font-bold text-[#991b1b] bg-[#fee2e2] border border-[#f87171] px-3.5 py-1 rounded-full mb-2.5">
+        第二層｜身墮餓鬼道
+      </span>
+      <h1 class="font-serif text-xl sm:text-2xl font-bold text-[#7f1d1d] mb-3 leading-snug">
+        咽喉細如針孔，終日受飢火焚燒
+      </h1>
+      <div class="space-y-3 text-sm sm:text-base leading-relaxed text-[#3f2c2c]">
+        <p>目連悲痛地發現，母親因生前極度慳貪、又曾打罵出家僧侶，死後墮入了「餓鬼道」。</p>
+        <p>她瘦得只剩皮包骨，咽喉細得像針孔一樣，長年累月喝不到水、吃不到米，腹中卻像有烈火在燃燒。目連心如刀割，決定立刻出手相救：</p>
+      </div>
+
+      <div class="bg-[#fee2e2]/80 border-l-4 border-[#dc2626] p-3.5 rounded-r-xl my-4 text-xs sm:text-sm leading-relaxed text-[#7f1d1d]">
+        🤔 <strong class="text-[#991b1b]">關鍵抉擇：</strong>身為「神通第一」的目連，看到母親正在挨餓，你會怎麼做？
+      </div>
+
+      <div class="space-y-2.5">
+        <button onclick="playSoundEffect('click'); show('p-food')" class="w-full text-left bg-[#fff5f5] hover:bg-[#fee2e2] active:scale-[0.99] text-[#7f1d1d] border border-[#f87171] p-3.5 rounded-xl text-sm sm:text-base transition-all duration-200 flex items-start gap-3 cursor-pointer shadow-sm">
+          <span class="text-lg mt-0.5">🍚</span>
+          <span><strong>選項 A：</strong>立刻施展個人神通，變出一缽白飯直接送給母親吃</span>
+        </button>
+
+        <button onclick="playSoundEffect('click'); show('p-buddha')" class="w-full text-left bg-[#fffbeb] hover:bg-[#fef3c7] active:scale-[0.99] text-[#78350f] border border-[#f59e0b] p-3.5 rounded-xl text-sm sm:text-base transition-all duration-200 flex items-start gap-3 cursor-pointer shadow-sm">
+          <span class="text-lg mt-0.5">🙏</span>
+          <span><strong>選項 B：</strong>明白業力深重，前往請示佛陀該如何真正救度母親</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==================== 第二層結果：神通不敵業力 ==================== -->
+    <section id="p-food" class="pg hidden">
+      <!-- 飯化炭火圖片區 -->
+      <div class="w-full h-52 sm:h-64 rounded-xl overflow-hidden mb-4 border border-[#fdba74] bg-gradient-to-b from-[#ffedd5] via-[#fee2e2] to-[#fff7ed] flex items-center justify-center relative shadow-inner">
+        <img src="https://i.postimg.cc/HLVMZ1Kt/image-5732717f.jpg" alt="白飯瞬間化為炭火" class="w-full h-full object-cover"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <span class="absolute bottom-2 right-3 text-[11px] text-[#9a3412] font-medium bg-white/85 backdrop-blur-xs px-2.5 py-0.5 rounded-full shadow-2xs">神通再大仍難敵自身業力</span>
+      </div>
+
+      <span class="inline-block text-xs sm:text-sm font-bold text-[#9a3412] bg-[#ffedd5] border border-[#fb923c] px-3.5 py-1 rounded-full mb-2.5">
+        第二層結果｜神通不敵業力
+      </span>
+      <h1 class="font-serif text-xl sm:text-2xl font-bold text-[#7c2d12] mb-3 leading-snug">
+        自身無功德受用，白飯瞬間化為炭火！
+      </h1>
+      <div class="space-y-3 text-sm sm:text-base leading-relaxed text-[#3f2c2c]">
+        <p>目連施展神通，盛滿一缽香噴噴的白飯送到母親面前。母親見飯貪念又起，左手緊遮碗口怕被搶走，右手急忙抓飯往嘴裡塞——</p>
+        <p>但因為母親生前造下重罪、毫無福德可以受用，飯食剛碰到嘴唇，竟瞬間化為<strong class="text-[#dc2626]">「熊熊燃燒的炭火」</strong>，把母親燙得痛苦哀號！目連這才徹底明白：個人神通再大，依舊抵銷不了業力，無法救出母親。</p>
+      </div>
+
+      <div class="bg-[#ffedd5]/85 border-l-4 border-[#ea580c] p-3.5 rounded-r-xl my-4 text-xs sm:text-sm leading-relaxed text-[#7c2d1d]">
+        💡 <strong class="text-[#9a3412]">為什麼神通救不了？</strong>神通只能改變外在物質，無法直接抹除內心長期累積的業障與缺乏福德的狀態。
+      </div>
+
+      <div class="space-y-2.5">
+        <button onclick="playSoundEffect('click'); show('p-buddha')" class="w-full text-left bg-[#fef3c7] hover:bg-[#fde68a] text-[#78350f] border border-[#d97706] p-3.5 rounded-xl text-sm sm:text-base font-bold transition-all cursor-pointer flex items-center justify-between shadow-sm">
+          <span>轉念：前往請示佛陀，尋找徹底化解業力的方法</span>
+          <span>➔</span>
+        </button>
+        <button onclick="playSoundEffect('click'); show('p-ghost')" class="w-full text-center bg-white hover:bg-[#faf5eb] text-[#6b5e4c] border border-[#d6cbb8] p-3 rounded-xl text-xs sm:text-sm transition-all cursor-pointer">
+          ↺ 返回上一層重選
+        </button>
+      </div>
+    </section>
+
+    <!-- ==================== 第三層：佛陀開示與互動儀式 ==================== -->
+    <section id="p-buddha" class="pg hidden">
+      <!-- 佛陀開示與供養圖片區 -->
+      <div class="w-full h-48 sm:h-60 rounded-xl overflow-hidden mb-4 border border-[#fcd34d] bg-gradient-to-b from-[#fef3c7] via-[#fffbeb] to-[#fef9c3] flex items-center justify-center relative shadow-inner">
+        <img src="https://i.postimg.cc/J0P4CGHM/image-392bde0b.jpg" alt="佛陀開示設盂蘭盆供養十方僧" class="w-full h-full object-cover"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <span class="absolute bottom-2 right-3 text-[11px] text-[#92400e] font-medium bg-white/85 backdrop-blur-xs px-2.5 py-0.5 rounded-full shadow-2xs">七月十五日設盂蘭盆供養十方僧</span>
+      </div>
+
+      <span class="inline-block text-xs sm:text-sm font-bold text-[#92400e] bg-[#fef3c7] border border-[#f59e0b] px-3.5 py-1 rounded-full mb-2.5">
+        第三層｜佛陀開示：無量功德之法
+      </span>
+      <h1 class="font-serif text-xl sm:text-2xl font-bold text-[#451a03] mb-2.5 leading-snug">
+        農曆七月十五日，設盆供養十方大眾
+      </h1>
+      <div class="space-y-2.5 text-sm sm:text-base leading-relaxed text-[#3f352c]">
+        <p>佛陀告訴目連：「你母親罪根深結，絕非一人之力可以救拔；必須仰仗『十方眾僧』的清淨威神之力，才能解脫。」</p>
+        <p>佛陀指示在<strong class="text-[#b45309]">「農曆七月十五日」</strong>（十方僧眾安居圓滿自恣日），準備圓滿供品供養十方無量大眾，藉此匯聚「無量功德」迴向母親。</p>
+      </div>
+
+      <div class="bg-[#fef3c7]/80 border-l-4 border-[#d97706] p-3 rounded-r-xl my-4 text-xs sm:text-sm leading-relaxed text-[#78350f]">
+        🎯 <strong class="text-[#92400e]">互動任務：</strong>要拔除重罪必須具備「無量功德」——供品要<strong>全數備齊</strong>，供養對象更要<strong>廣及十方大眾</strong>。準備太少或對象太侷限，母親依舊無法得救！
+      </div>
+
+      <!-- 供養互動面板 -->
+      <div class="bg-[#faf4e6] border border-[#e2cfa8] rounded-xl p-4 sm:p-5 mb-4 shadow-inner">
+        <div class="flex items-center justify-between mb-2.5">
+          <span class="text-[#78350f] font-bold text-sm sm:text-base">一、請點選供養物品（需全數備齊）：</span>
+          <span id="item-counter" class="text-xs px-2.5 py-0.5 rounded-full bg-[#fef3c7] text-[#92400e] border border-[#f59e0b]/50 font-bold">
+            已備齊 0 / 4 項
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-5">
+          <button type="button" onclick="playSoundEffect('select'); toggleItem(this)" class="opt p-3 border border-[#d6c299] rounded-lg bg-white hover:bg-[#fffbeb] text-[#3f352c] text-sm sm:text-[0.95rem] text-center transition-all cursor-pointer select-none shadow-2xs">
+            🍲 百味清淨飲食
+          </button>
+          <button type="button" onclick="playSoundEffect('select'); toggleItem(this)" class="opt p-3 border border-[#d6c299] rounded-lg bg-white hover:bg-[#fffbeb] text-[#3f352c] text-sm sm:text-[0.95rem] text-center transition-all cursor-pointer select-none shadow-2xs">
+            🍑 五果時令珍饈
+          </button>
+          <button type="button" onclick="playSoundEffect('select'); toggleItem(this)" class="opt p-3 border border-[#d6c299] rounded-lg bg-white hover:bg-[#fffbeb] text-[#3f352c] text-sm sm:text-[0.95rem] text-center transition-all cursor-pointer select-none shadow-2xs">
+            🕯️ 香油錠燭光明
+          </button>
+          <button type="button" onclick="playSoundEffect('select'); toggleItem(this)" class="opt p-3 border border-[#d6c299] rounded-lg bg-white hover:bg-[#fffbeb] text-[#3f352c] text-sm sm:text-[0.95rem] text-center transition-all cursor-pointer select-none shadow-2xs">
+            🛏️ 汲灌盆器臥具
+          </button>
+        </div>
+
+        <div class="text-[#78350f] font-bold text-sm sm:text-base mb-2.5">
+          二、請選擇供養對象（單選）：
+        </div>
+        <div class="space-y-2 mb-5">
+          <button type="button" data-v="1" onclick="playSoundEffect('select'); setTarget(this)" class="tgt w-full p-3 border border-[#d6c299] rounded-lg bg-white hover:bg-[#fffbeb] text-[#3f352c] text-sm sm:text-[0.95rem] text-left transition-all cursor-pointer shadow-2xs">
+            👤 僅供養目連尊者一人
+          </button>
+          <button type="button" data-v="2" onclick="playSoundEffect('select'); setTarget(this)" class="tgt w-full p-3 border border-[#d6c299] rounded-lg bg-white hover:bg-[#fffbeb] text-[#3f352c] text-sm sm:text-[0.95rem] text-left transition-all cursor-pointer shadow-2xs">
+            🏯 僅供養鄰近精舍的少數幾位出家人
+          </button>
+          <button type="button" data-v="3" onclick="playSoundEffect('select'); setTarget(this)" class="tgt w-full p-3 border border-[#d6c299] rounded-lg bg-white hover:bg-[#fffbeb] text-[#3f352c] text-sm sm:text-[0.95rem] text-left transition-all cursor-pointer shadow-2xs">
+            ✨ 供養「十方自恣大德眾僧」（十方無量大眾）
+          </button>
+        </div>
+
+        <button type="button" onclick="playSoundEffect('success'); verifyRitual()" class="w-full bg-gradient-to-r from-[#d97706] to-[#f59e0b] hover:from-[#b45309] hover:to-[#d97706] active:scale-[0.99] text-white font-bold text-base py-3.5 px-4 rounded-xl shadow-md transition-all cursor-pointer">
+          🙏 舉行農曆七月十五日供養，迴向母親
+        </button>
+
+        <!-- 錯誤與引導提示框 -->
+        <div id="w-box" class="hidden mt-3.5 p-3.5 rounded-lg bg-[#fee2e2] border border-[#f87171] text-[#991b1b] text-xs sm:text-sm leading-relaxed animate-page"></div>
+      </div>
+
+      <button onclick="playSoundEffect('click'); show('p-ghost')" class="w-full text-center bg-white hover:bg-[#faf5eb] text-[#6b5e4c] border border-[#d6cbb8] p-3 rounded-xl text-xs sm:text-sm transition-all cursor-pointer">
+        ↺ 返回第二層
+      </button>
+    </section>
+
+    <!-- ==================== 最終結局：無量功德圓滿迴向 ==================== -->
+    <section id="p-salvation" class="pg hidden">
+      <!-- 圓滿得度圖片區 -->
+      <div class="w-full h-52 sm:h-64 rounded-xl overflow-hidden mb-4 border border-[#86efac] bg-gradient-to-b from-[#dcfce7] via-[#fef9c3]/70 to-[#ecfdf5] flex items-center justify-center relative shadow-inner">
+        <img src="https://i.postimg.cc/Yqq49w3F/image-73875fc9.jpg" alt="母親脫離苦海往生善道" class="w-full h-full object-cover"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <span class="absolute bottom-2 right-3 text-[11px] text-[#166534] font-medium bg-white/85 backdrop-blur-xs px-2.5 py-0.5 rounded-full shadow-2xs">仰仗十方眾僧威德・慈親解脫</span>
+      </div>
+
+      <span class="inline-block text-xs sm:text-sm font-bold text-[#166534] bg-[#dcfce7] border border-[#4ade80] px-3.5 py-1 rounded-full mb-2.5">
+        最終結局｜無量功德圓滿迴向
+      </span>
+      <h1 class="font-serif text-xl sm:text-2xl font-bold text-[#14532d] mb-3 leading-snug">
+        十方眾僧同心迴向，母親脫離餓鬼苦海！
+      </h1>
+      <div class="space-y-3 text-sm sm:text-base leading-relaxed text-[#2c3e32]">
+        <p>農曆七月十五日這天，目連備齊百味五果、香油錠燭與臥具盆器，至誠供養「十方自恣大德眾僧」。</p>
+        <p>仰仗十方無量清淨僧寶修行戒德的廣大威神力，成就了「無量無邊的功德」迴向母親，母親當日即脫離餓鬼苦海，往生善道！這也成為後世「盂蘭盆節」報答親恩、廣修無量福田的由來。</p>
+      </div>
+
+      <div class="bg-[#dcfce7]/85 border-l-4 border-[#16a34a] p-3.5 rounded-r-xl my-4 text-xs sm:text-sm leading-relaxed text-[#14532d]">
+        🎓 <strong class="text-[#166534]">課後思考：</strong>從「個人神通送飯失敗」到「供養十方大眾成功」，你覺得《目連救母》想傳達什麼道理？
+      </div>
+
+      <button onclick="playSoundEffect('success'); restart()" class="w-full text-center bg-[#f0fdf4] hover:bg-[#dcfce7] text-[#166534] border border-[#4ade80] p-3.5 rounded-xl text-sm sm:text-base font-bold transition-all cursor-pointer shadow-sm">
+        ↺ 重新體驗完整三層故事
+      </button>
+    </section>
+
+  </main>
+
+  <script>
+    // -------------------------------------------------------------
+    // Web Audio API 禪意古風背景音樂合成引擎
+    // -------------------------------------------------------------
+    let audioCtx = null;
+    let isBgmPlaying = false;
+    let bgmInterval = null;
+
+    // 傳統五聲階音階頻率對照 (宮、商、角、徵、羽)
+    // 以 D 徵音階 (D4, F4, G4, A4, C5, D5) 呈現古風禪意
+    const PENTATONIC_SCALE = [293.66, 349.23, 392.00, 440.00, 523.25, 587.33, 698.46];
+
+    function initAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    function playBgmNote() {
+      if (!isBgmPlaying || !audioCtx) return;
+
+      const now = audioCtx.currentTime;
+      // 隨機選取音階中的音符
+      const freq = PENTATONIC_SCALE[Math.floor(Math.random() * PENTATONIC_SCALE.length)];
+
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      // 使用正弦波模擬古箏或清脆的鐘磬泛音
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, now);
+
+      // 柔和的音量起伏 (淡入淡出)
+      gain.gain.setValueAtTime(0.001, now);
+      gain.gain.linearRampToValueAtTime(0.035, now + 0.3);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 3.2);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start(now);
+      osc.stop(now + 3.3);
+    }
+
+    function toggleAmbientMusic() {
+      initAudioContext();
+      const musicText = document.getElementById('music-text');
+      const musicIcon = document.getElementById('music-icon');
+
+      if (isBgmPlaying) {
+        isBgmPlaying = false;
+        clearInterval(bgmInterval);
+        musicText.textContent = '播放禪意配樂';
+        musicIcon.textContent = '🎵';
+      } else {
+        isBgmPlaying = true;
+        musicText.textContent = '暫停音樂';
+        musicIcon.textContent = '🎶';
+        
+        // 立即彈奏第一個音
+        playBgmNote();
+        // 每隔一段時間自動彈奏下一個音符，營造源源不絕的背景音樂感
+        bgmInterval = setInterval(() => {
+          playBgmNote();
+        }, 900);
+      }
+    }
+
+    // 互動點擊音效
+    function playSoundEffect(type) {
+      initAudioContext();
+      if (!audioCtx) return;
+      try {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        const now = audioCtx.currentTime;
+
+        if (type === 'click') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(440, now);
+          osc.frequency.exponentialRampToValueAtTime(220, now + 0.15);
+          gain.gain.setValueAtTime(0.05, now);
+          gain.gain.linearRampToValueAtTime(0.001, now + 0.15);
+        } else if (type === 'select') {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(587.33, now); // D5
+          gain.gain.setValueAtTime(0.04, now);
+          gain.gain.linearRampToValueAtTime(0.001, now + 0.12);
+        } else if (type === 'success') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(523.25, now); // C5
+          osc.frequency.setValueAtTime(659.25, now + 0.1); // E5
+          osc.frequency.setValueAtTime(783.99, now + 0.2); // G5
+          gain.gain.setValueAtTime(0.06, now);
+          gain.gain.linearRampToValueAtTime(0.001, now + 0.5);
+        }
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + 0.5);
+      } catch (e) {
+        // 忽略音效播放限制
+      }
+    }
+
+    // 各場景主題配置
+    const SCENE_THEMES = {
+      'p-start': {
+        bodyBg: '#f5efe4',
+        borderColor: 'rgba(217, 119, 6, 0.55)',
+        bgColor: 'rgba(255, 253, 249, 0.96)',
+        glow: 'radial-gradient(circle at 50% 15%, rgba(245, 158, 11, 0.18), transparent 70%)',
+        step: '章節 1 / 4'
+      },
+      'p-heaven': {
+        bodyBg: '#eef6fa',
+        borderColor: 'rgba(56, 189, 248, 0.65)',
+        bgColor: 'rgba(255, 255, 255, 0.96)',
+        glow: 'radial-gradient(circle at 50% 15%, rgba(56, 189, 248, 0.22), transparent 70%)',
+        step: '支線結局'
+      },
+      'p-ghost': {
+        bodyBg: '#f9eeee',
+        borderColor: 'rgba(248, 113, 113, 0.65)',
+        bgColor: 'rgba(255, 252, 252, 0.96)',
+        glow: 'radial-gradient(circle at 50% 15%, rgba(239, 68, 68, 0.16), transparent 70%)',
+        step: '章節 2 / 4'
+      },
+      'p-food': {
+        bodyBg: '#fbf0ea',
+        borderColor: 'rgba(251, 146, 60, 0.7)',
+        bgColor: 'rgba(255, 252, 249, 0.96)',
+        glow: 'radial-gradient(circle at 50% 15%, rgba(249, 115, 22, 0.18), transparent 70%)',
+        step: '章節 2 / 4（因果示現）'
+      },
+      'p-buddha': {
+        bodyBg: '#f5efe4',
+        borderColor: 'rgba(217, 119, 6, 0.6)',
+        bgColor: 'rgba(255, 253, 249, 0.96)',
+        glow: 'radial-gradient(circle at 50% 15%, rgba(245, 158, 11, 0.20), transparent 70%)',
+        step: '章節 3 / 4'
+      },
+      'p-salvation': {
+        bodyBg: '#eef7f1',
+        borderColor: 'rgba(74, 222, 128, 0.7)',
+        bgColor: 'rgba(252, 255, 253, 0.96)',
+        glow: 'radial-gradient(circle at 50% 15%, rgba(34, 197, 94, 0.20), transparent 70%)',
+        step: '章節 4 / 4（圓滿）'
+      }
+    };
+
+    // 切換頁面與主題氛圍
+    function show(id) {
+      document.querySelectorAll('.pg').forEach(p => {
+        p.classList.add('hidden');
+        p.classList.remove('animate-page');
+      });
+
+      const targetPage = document.getElementById(id);
+      if (targetPage) {
+        targetPage.classList.remove('hidden');
+        void targetPage.offsetWidth;
+        targetPage.classList.add('animate-page');
+      }
+
+      const theme = SCENE_THEMES[id] || SCENE_THEMES['p-start'];
+      const box = document.getElementById('story-box');
+      const bgGlow = document.getElementById('bg-glow');
+      const stepIndicator = document.getElementById('step-indicator');
+
+      document.body.style.backgroundColor = theme.bodyBg;
+      box.style.borderColor = theme.borderColor;
+      box.style.backgroundColor = theme.bgColor;
+      bgGlow.style.background = theme.glow;
+      stepIndicator.textContent = theme.step;
+
+      if (id === 'p-buddha') {
+        resetRitual();
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // 切換供品選取狀態並更新計數器
+    function toggleItem(el) {
+      el.classList.toggle('on');
+      if (el.classList.contains('on')) {
+        el.classList.remove('bg-white', 'text-[#3f352c]', 'border-[#d6c299]');
+        el.classList.add('bg-[#f59e0b]', 'text-white', 'font-bold', 'border-[#d97706]', 'shadow-sm');
+      } else {
+        el.classList.add('bg-white', 'text-[#3f352c]', 'border-[#d6c299]');
+        el.classList.remove('bg-[#f59e0b]', 'text-white', 'font-bold', 'border-[#d97706]', 'shadow-sm');
+      }
+      updateItemCounter();
+      hideWarning();
+    }
+
+    // 更新供品數量標籤
+    function updateItemCounter() {
+      const count = document.querySelectorAll('.opt.on').length;
+      const counter = document.getElementById('item-counter');
+      counter.textContent = `已備齊 ${count} / 4 項`;
+      if (count === 4) {
+        counter.classList.remove('bg-[#fef3c7]', 'text-[#92400e]', 'border-[#f59e0b]/50');
+        counter.classList.add('bg-[#dcfce7]', 'text-[#166534]', 'border-[#4ade80]');
+      } else {
+        counter.classList.add('bg-[#fef3c7]', 'text-[#92400e]', 'border-[#f59e0b]/50');
+        counter.classList.remove('bg-[#dcfce7]', 'text-[#166534]', 'border-[#4ade80]');
+      }
+    }
+
+    // 單選供養對象
+    function setTarget(el) {
+      document.querySelectorAll('.tgt').forEach(t => {
+        t.classList.remove('on', 'bg-[#f59e0b]', 'text-white', 'font-bold', 'border-[#d97706]', 'shadow-sm');
+        t.classList.add('bg-white', 'text-[#3f352c]', 'border-[#d6c299]');
+      });
+
+      el.classList.add('on');
+      el.classList.remove('bg-white', 'text-[#3f352c]', 'border-[#d6c299]');
+      el.classList.add('bg-[#f59e0b]', 'text-white', 'font-bold', 'border-[#d97706]', 'shadow-sm');
+      hideWarning();
+    }
+
+    // 重置供養儀式面板
+    function resetRitual() {
+      document.querySelectorAll('.opt, .tgt').forEach(el => {
+        el.classList.remove('on', 'bg-[#f59e0b]', 'text-white', 'font-bold', 'border-[#d97706]', 'shadow-sm');
+        el.classList.add('bg-white', 'text-[#3f352c]', 'border-[#d6c299]');
+      });
+      updateItemCounter();
+      hideWarning();
+    }
+
+    // 重新開始整個故事
+    function restart() {
+      resetRitual();
+      show('p-start');
+    }
+
+    // 隱藏警告提示
+    function hideWarning() {
+      const w = document.getElementById('w-box');
+      w.classList.add('hidden');
+    }
+
+    // 顯示警告提示
+    function showWarning(htmlMsg) {
+      const w = document.getElementById('w-box');
+      w.innerHTML = htmlMsg;
+      w.classList.remove('hidden');
+    }
+
+    // 驗證供養條件是否圓滿
+    function verifyRitual() {
+      const itemsCount = document.querySelectorAll('.opt.on').length;
+      const targetEl = document.querySelector('.tgt.on');
+
+      if (!itemsCount || !targetEl) {
+        showWarning('⚠️ 請先點選「供養物品」與「供養對象」！');
+        return;
+      }
+      if (targetEl.dataset.v === '1') {
+        showWarning('⚠️ <strong>功德有限，無法得救：</strong>單靠目連一人之力終究有限，難以抗衡深重業力。請改選供養「十方無量大眾」！');
+        return;
+      }
+      if (targetEl.dataset.v === '2') {
+        showWarning('⚠️ <strong>心量尚窄，無法得救：</strong>僅供養少數出家人，福德力道尚不足以拔除餓鬼重罪。請改選供養「十方無量大眾」！');
+        return;
+      }
+      if (itemsCount < 4) {
+        showWarning(`⚠️ <strong>供養物品尚缺 ${4 - itemsCount} 項，依舊無法得救：</strong>供養資具不夠圓滿，福德力道仍嫌微薄。請將四項供品全數備齊！`);
+        return;
+      }
+
+      show('p-salvation');
+    }
+  </script>
+</body>
+</html>
